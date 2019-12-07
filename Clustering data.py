@@ -8,6 +8,10 @@ import sys
 from random import shuffle,uniform
 import math
 from colorama import Fore,Back,Style
+import tkinter as tk
+from tkinter import*
+import random
+import time
 #Read data from dataset to be cluster#
 def ReadData(fileName):                     #Function to read data from file
     f = open(fileName,'r')                  #open the file to be read
@@ -135,18 +139,55 @@ def CalculateMeans(k,items,maxIterations=100):
             break                             #when we achieve our desired state there is less variation
 
     return means
+
 def main():
     items = ReadData("E:/Web designing/data.txt")
     k = 3
-    means = CalculateMeans(k,items)
-    clusters = FindClusters(means,items)
-    print(means)
-    #print(Fore.RED + 'some red text')
-    #print(Back.GREEN + 'and with a green background')
-    #print(Style.DIM + 'and in dim text')
-    print(Fore.GREEN + "clusters")
-    print(clusters)
+    root=Tk()
+    def readdata():
+        w = tk.Label(root, bg="powder blue",fg="black",text="Data imported suceesfully!!!!!")
+        w.pack()
+    def KValue():
+        k = 3
+        w = tk.Label(root, bg="powder blue",fg="black",text="Value of K Is")
+        w.pack()
+    def process():
+         means = CalculateMeans(k,items)
+         clusters = FindClusters(means,items)
+         print(means)
+         #print(Fore.RED + 'some red text')
+         #print(Back.GREEN + 'and with a green background')
+         #print(Style.DIM + 'and in dim text')
+         print(Fore.GREEN + "clusters")
+         print(clusters)
+    def abc():
+        return readdata()
+    def df():
+        return KValue()
+    def gh():
+        return process()
     
+    root.geometry("1600x800+0+0")
+    root.title("Clustering People using Scrap Data")
+    Tops=Frame(root,width=1600,height=50,bg="powder blue", relief=SUNKEN)
+    Tops.pack(side=TOP)
+    #=================================Time==========================
+    localtime=time.asctime(time.localtime(time.time()))
+    #=================================Info==========================
+    lblInfo=Label(Tops,font=('arial',50,'bold'),text="Clustering People using Scrap Data",fg="Steel Blue",bd=10)
+    lblInfo.grid(row=0,column=0)
+    lblInfo=Label(Tops,font=('arial',20,'bold'),text=localtime,fg="Steel Blue",bd=10,anchor='w')
+    lblInfo.grid(row=1,column=0)
+#===============================Buttons===========================
+    start_button = Button(root, text="IMPORT FILE",padx=16,pady=8,bd=16,fg="black",font=('arial',16,'bold'),width=10,bg="powder blue",command=abc())
+
+    cancel_button = Button(root,text="CLUSTER VALUE",padx=16,pady=8,bd=16,fg="black",font=('arial',16,'bold'),width=10,bg="powder blue",command=df())
+
+    center_button = Button(root,text="PROCESS ALGO",padx=16,pady=8,bd=16,fg="black",font=('arial',16,'bold'),width=10,bg="powder blue",command=gh())
+    start_button.pack(side=TOP)
+    cancel_button.pack(side=TOP)
+    center_button.pack(side=TOP)
+    root.mainloop()
     #print Classify(means,newItem);
 
 if __name__ == "__main__":
