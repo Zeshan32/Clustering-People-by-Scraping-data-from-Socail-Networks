@@ -160,12 +160,7 @@ def main():
          #print(Style.DIM + 'and in dim text')
          print(Fore.GREEN + "clusters")
          print(clusters)
-    def abc():
-        return readdata()
-    def df():
-        return KValue()
-    def gh():
-        return process()
+   
     
     root.geometry("1600x800+0+0")
     root.title("Clustering People using Scrap Data")
@@ -179,13 +174,16 @@ def main():
     lblInfo=Label(Tops,font=('arial',20,'bold'),text=localtime,fg="Steel Blue",bd=10,anchor='w')
     lblInfo.grid(row=1,column=0)
 #===============================Buttons===========================
-    start_button = Button(root, text="IMPORT FILE",padx=16,pady=8,bd=16,fg="black",font=('arial',16,'bold'),width=10,bg="powder blue",command=abc())
+    start_button = Button(root, text="IMPORT FILE",padx=16,pady=8,bd=16,fg="black",font=('arial',16,'bold'),width=10,bg="powder blue")
 
-    cancel_button = Button(root,text="CLUSTER VALUE",padx=16,pady=8,bd=16,fg="black",font=('arial',16,'bold'),width=10,bg="powder blue",command=df())
+    cancel_button = Button(root,text="CLUSTER VALUE",padx=16,pady=8,bd=16,fg="black",font=('arial',16,'bold'),width=10,bg="powder blue")
 
-    center_button = Button(root,text="PROCESS ALGO",padx=16,pady=8,bd=16,fg="black",font=('arial',16,'bold'),width=10,bg="powder blue",command=gh())
+    center_button = Button(root,text="PROCESS ALGO",padx=16,pady=8,bd=16,fg="black",font=('arial',16,'bold'),width=10,bg="powder blue")
+    start_button.bind("<Button-1>",readata)
     start_button.pack(side=TOP)
+    cancel_button.bind("<Button-1>",KValue)
     cancel_button.pack(side=TOP)
+    center_button.bind("<Button-1>",process)
     center_button.pack(side=TOP)
     root.mainloop()
     #print Classify(means,newItem);
